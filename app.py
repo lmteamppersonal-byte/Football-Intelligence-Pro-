@@ -19,6 +19,10 @@ import json
 from impact_index import compute_impact
 from sofascore import get_player_stats, parse_player_id
 
+# Health check endpoint for monitoring
+def health_check():
+    return {"status": "ok", "timestamp": str(datetime.datetime.now())}
+
 st.set_page_config(page_title="Football Intelligence Pro", page_icon="⚽", layout="wide")
 
 # Sidebar Setup
