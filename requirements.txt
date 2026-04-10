@@ -1,0 +1,16 @@
+streamlit>=1.20.0
+pandas>=1.5.0
+plotly>=5.0.0
+requests>=2.28.0
+cloudscraper>=1.2.60
+selenium>=4.8.0
+webdriver-manager>=3.8.5
+openpyxl>=3.0.10
+numpy>=1.24.0
+sqlalchemy>=1.4.0
+python-dotenv>=1.0.0
+tqdm>=4.65.0
+scipy
+PyYAML
+statsmodels
+Faker
