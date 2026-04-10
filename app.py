@@ -1,4 +1,13 @@
+# no topo de app.py
 import streamlit as st
+try:
+    from data_manager import db_manager, load_from_file, fetch_players
+except Exception as e:
+    st.title("Erro de inicialização")
+    st.error("Falha ao importar módulos internos. Verifique logs do deploy.")
+    st.code(str(e))
+    raise
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -7,7 +16,6 @@ import time
 from io import StringIO
 import json
 
-from data_manager import db_manager, load_from_file, fetch_players
 from impact_index import compute_impact
 from sofascore import get_player_stats, parse_player_id
 
