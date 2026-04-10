@@ -1,0 +1,33 @@
+# Patch para remover fallback de import em data_manager.py
+# Após validar que imports funcionam consistentemente, aplique este diff:
+
+--- a/data_manager.py
++++ b/data_manager.py
+@@ -5,25 +5,7 @@ import datetime
+ from sqlalchemy import create_engine, Column, Integer, String, Date, DateTime, Numeric, JSON
+ from sqlalchemy.orm import declarative_base, sessionmaker
+ from sqlalchemy.dialects.sqlite import insert as sqlite_upsert
+-import logging
+-logger = logging.getLogger(__name__)
+-
+-# Import robusto para ambientes com diferenças de path/import
+-try:
+-    # tentativa de import relativo (quando o projeto é tratado como pacote)
+-    from .utils.logging_config import setup_logging
+-except Exception:
+-    try:
+-        # tentativa de import absoluto (quando executado como script)
+-        from utils.logging_config import setup_logging
+-    except Exception as exc:
+-        # fallback: define setup_logging local para evitar crash total
+-        logger.exception("Falha ao importar utils.logging_config; usando fallback de logging")
+-        import logging as _logging
+-        def setup_logging(level=_logging.INFO):
+-            _logging.basicConfig(level=level)
+-            return _logging.getLogger()
+-
++from utils.logging_config import setup_logging
+ from dotenv import load_dotenv
+ 
+ load_dotenv()
+ logger = setup_logging("data_manager")
